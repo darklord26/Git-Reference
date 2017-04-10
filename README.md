@@ -77,7 +77,14 @@ Branching
     git checkout -b <branch>  # Create and switch to a branch
     git branch -d <branch>  # Remove local branch
     git branch -avv  # Show extra verbose information about branches and their remotes
-
+    
+Tagging
+---------
+    git tag -a <tag_name> # Create a tag
+    git tag # List all tags
+    git push --tags # Push all the tags to remote repo
+    git tag -d <tag_name> # Delete tag
+    git push origin :refs/tags/<tag_name> # Update the remote repo after deleting tag on local
 
 Displaying Logs
 ---------------
