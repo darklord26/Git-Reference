@@ -184,21 +184,59 @@ Using Additional Packages
 Using Shell Aliases
 -------------------
 
-    ga='git add'
-    gb='git branch'
-    gci='git commit -v'
-    gco='git checkout'
-    gd='git diff'
-    gdc='git diff --cached'
-    gl='git log --pretty=oneline --abbrev-commit --graph --decorate'
-    glog='git log --graph --pretty=format":%C(yellow)%h%Cblue%d%Creset %s %C(white) %an, %ar%Creset"'
-    gloga='glog --all'
-    gf='git fetch'
-    gm='git merge'
-    gp='git push'
-    grh='git reset HEAD'
-    grhh='git reset HEAD --hard'
-    gss='git status -s'
+   up=!git pull --rebase --prune $@ && git submodule update --init --recursive
+co=checkout
+cob=checkout -b
+cm=!git add -A && git commit -m
+save=!git add -A && git commit -m 'SAVEPOINT'
+wip=!git add -u && git commit -m WIP
+undo=reset HEAD~1 --mixed
+amend=commit -a --amend
+wipe=!git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+st=status -s
+cl=clone
+br=branch
+r=reset
+cp=cherry-pick
+gr=grep -Ii
+lds=log --pretty=format:%C(yellow)%h\ %ad%Cred%d\ %Creset%s%Cblue\ [%cn] --decorate --date=short
+ld=log --pretty=format:%C(yellow)%h\ %ad%Cred%d\ %Creset%s%Cblue\ [%cn] --decorate --date=relative
+le=log --oneline --decorate
+ls=log --pretty=format:%C(green)%h\ %C(yellow)[%ad]%Cred%d\ %Creset%s%Cblue\ [%cn] --decorate --date=relative
+ll=log --pretty=format:%C(yellow)%h%Cred%d\ %Creset%s%Cblue\ [%cn] --decorate --numstat
+lc=!f() { git ll $1^..$1; }; f
+lnc=log --pretty=format:%h\ %s\ [%cn]
+fl=log -u
+filelog=log -u
+graph=log --graph --oneline --decorate --all
+dl=!git ll -1
+dlc=diff --cached HEAD^
+f=!git ls-files | grep -i
+grep=grep -Ii
+gr=grep -Ii
+d=diff --word-diff
+dc=diff --cached
+dlc=diff --cached HEAD^
+dr=!f() { git diff -w $1^..$1; }; f
+diffr=!f() { git diff $1^..$1; }; f
+r1=reset HEAD^
+r2=reset HEAD^^
+rh=reset --hard
+rh1=reset HEAD^ --hard
+rh2=reset HEAD^^ --hard
+sl=stash list
+sa=stash apply
+ss=stash save
+ours=!f() { git co --ours $@ && git add $@; }; f
+theirs=!f() { git co --theirs $@ && git add $@; }; f
+rem=!git config -l | grep remote.*url | tail -n +2
+la=!git config -l | grep alias | cut -c 7-
+wl=worktree list
+
+Ref: 
+http://haacked.com/archive/2014/07/28/github-flow-aliases/
+http://durdn.com/blog/2012/11/22/must-have-git-aliases-advanced-examples/
+	
 
 
 References
