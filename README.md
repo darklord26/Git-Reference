@@ -183,9 +183,6 @@ Using Additional Packages
 
 Using Shell Aliases
 -------------------
-
-# alias {{{
-[alias]
     # Workflow
     # Before starting work on a particular branch
     up = !git pull --rebase --prune $@ && git submodule update --init --recursive
